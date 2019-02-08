@@ -2,32 +2,39 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import index from './index.js'
+import ConversationList from './containers/conversationList'
 
-class App extends Component {
-  render() {
-    console.log('ADD UR CODE HERE!')
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      <messageList>
-    <conversationList>
-        </header>
-      </div>
-    );
+const API = "http://localhost:3000/users"
+  class App extends Component {
+    state = {
+      conversations: []
+    }
+
+    componentDidMount(){
+      this.fetchConversation()
+    }
+
+    fetchConversation = () => {
+        fetch(API + `/${this.state.conversations}`)
+        .then(res => res.json())
+        .then(conversations => {
+          this.setState({
+            conversations: conversations
+          })
+        })
+      }
+
+      render() {
+         return (
+           <div className="app">
+             <ConversationList
+               conversationList={this.state.conversations}
+             />
+
+
+           </div>
+         );
+       }
+
   }
-}
-
 export default App;
