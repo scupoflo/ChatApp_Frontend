@@ -7,19 +7,20 @@ class ConversationList extends Component {
     conversations: []
   }
 
-  componentDidMount(){
-    this.fetchConversation()
-  }
-
-  fetchConversation = () => {
-      fetch(API)
-      .then(res => res.json())
-      .then(conversations => {
-        this.setState({
-          conversations: conversations
-        })
-      })
-    }
+  // componentDidMount(){
+  //   this.fetchConversation()
+  // }
+  //
+  // fetchConversation = () => {
+  //     fetch(API)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       debugger
+  //       this.setState({
+  //         conversations: data
+  //       })
+  //     })
+  //   }
 
     render() {
        return (

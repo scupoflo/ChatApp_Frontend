@@ -7,6 +7,7 @@ import ConversationList from './containers/conversationList'
 const API = "http://localhost:3000/users"
   class App extends Component {
     state = {
+      currentUser: null,
       conversations: []
     }
 
@@ -15,14 +16,17 @@ const API = "http://localhost:3000/users"
     }
 
     fetchConversation = () => {
-        fetch(API + `/${this.state.conversations}`)
+        fetch(API+`/2`)
         .then(res => res.json())
-        .then(conversations => {
+        .then(currentUserData => {
           this.setState({
-            conversations: conversations
+            currentUser: currentUserData.user,
+            conversations: currentUserData.conversations
           })
         })
       }
+
+
 
       render() {
          return (
