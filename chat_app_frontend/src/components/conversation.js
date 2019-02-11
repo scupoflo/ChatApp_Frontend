@@ -4,8 +4,9 @@ class Conversation extends React.Component {
 
   render(){
     return (
-      <div className="convo">
-        <p> {console.log ("Hello!")}</p>
+      <div>
+        <p> {this.props.speakerOne} is talking to {this.props.speakerTwo} ! </p>
+
       </div>
 
     )
