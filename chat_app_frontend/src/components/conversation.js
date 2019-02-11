@@ -1,11 +1,13 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 class Conversation extends React.Component {
 
   render(){
     return (
       <div>
-        <p> {this.props.speakerOne} is talking to {this.props.speakerTwo} ! </p>
+        <button>
+          {this.props.speakerOne.username} and {this.props.speakerTwo.username}
+        </button>
 
       </div>
 

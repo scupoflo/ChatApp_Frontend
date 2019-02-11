@@ -7,14 +7,15 @@ class ConversationList extends Component {
 
     render() {
         return (
-        <div>
-          {this.props.conversationList.map((conversation) => <Conversation
+        <div className = "contacts_body">
+          {this.props.conversationList.map((conversation, index) => <Conversation
               id = {conversation.id}
+              key = {index}
               speakerOne = {conversation.user_id1}
               speakerTwo = {conversation.user_id2}
              />)}
          </div>
-              )
+        )
     }
 }
 
