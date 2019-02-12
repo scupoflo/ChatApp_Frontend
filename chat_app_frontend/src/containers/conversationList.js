@@ -5,26 +5,21 @@ class ConversationList extends Component {
 
 
 
-    render() {
-        return (
-        <div className = "contacts_body">
-          {this.props.conversationList.map((conversation, index) =>
-            <button  onClick= {this.props.click}>
-              <Conversation
-                id = {conversation.id}
-                key = {index}
-                speakerOne = {conversation.user_id1}
-                speakerTwo = {conversation.user_id2}
-
-             />
-            </button>)}
-         </div>
-        )
-    }
+  render() {
+      return (
+      <div className = "contacts_body">
+        {this.props.conversationList.map((conversation, index) =>
+           <div>
+            <Conversation
+              click = {this.props.click}
+              id = {conversation.convo_id}
+              key = {index}
+              speakerOne = {conversation.user_id1}
+              speakerTwo = {conversation.user_id2}
+           />
+       </div>)}
+       </div>
+      )
+  }
 }
-
-
-
-
-
 export default ConversationList;

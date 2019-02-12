@@ -1,7 +1,7 @@
 import React from 'react'
 import ConversationList from '../containers/conversationList'
 import MessageList from '../containers/messageList'
-
+import Modal from './modal';
 const API = "http://localhost:3000"
 class LoginPage extends React.Component {
   constructor(){
@@ -44,17 +44,6 @@ class LoginPage extends React.Component {
       })
     }
 
-      // fetchMessages = () => {
-      //     fetch(API + '/messages')
-      //     .then(res => res.json())
-      //     .then(currentMessageData => {
-      //       this.setState({
-      //         messages: currentMessageData
-      //       })
-      //     })
-      //   }
-
-
 
   handleUsernameInput = (e) => {
     this.setState({
@@ -77,37 +66,51 @@ class LoginPage extends React.Component {
     })
   }
 
-  handleMessages = () => {
-      fetch(API + '/messages')
-      .then(res => res.json())
-      .then(currentMessageData => {
-        this.setState({
-          messages: currentMessageData
-        })
-      })
-    }
-
+  handleMessages = (id) => {
+     fetch(API + `/conversations/${id}`)
+     .then(res => res.json())
+     .then(currentMessageData => {
+       debugger
+       this.setState({
+         messages: currentMessageData.messages
+       })
+     })
+   }
 
 
   render(){
     return(
-      <div>
-      <h1>Welcome to ChatApp</h1>
-      <br />
+      <div className= "login-page">
+
+
+        <h1>Welcome to ChatApp</h1>
+
+        <br />
+
         <form onSubmit={this.handleLoginSubmit}>
           <input type="text" name="Username" value={this.state.username} onChange = {this.handleUsernameInput}/>
           <input type="submit" value="Login" />
         </form>
+        <br />
+        <br />
 
+        <div className= "conversation-list">
         <ConversationList
           conversationList={this.state.conversations}
           click= {this.handleMessages}
-          debugger
           show={this.state.isShowing}
           close={this.closeModalHandler}
          />
 
-       <MessageList allMessages= {this.state.messages}/>
+        <MessageList
+         allMessages= {this.state.messages}
+         show={this.state.isShowing}
+         close={this.closeModalHandler}
+         />
+     </div>
+
+
+
       </div>
     )
   }

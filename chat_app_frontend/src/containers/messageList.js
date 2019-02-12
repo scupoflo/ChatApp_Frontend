@@ -7,15 +7,17 @@ class MessageList extends Component {
 
     render() {
         return (
-        <div className = "contacts_body">
+        <div>
           {this.props.allMessages.map((message, index) =>
-
-            <Message
-            id = {message.id}
-            key = {index}
-            speaker = {message.user_id}
-            text = {message.text}
-                 />)}
+            <div>
+              <Message
+                id = {message.message_id}
+                key = {index}
+                speaker = {message.user_id.username}
+                text = {message.text}
+                   />
+            </div>
+             )}
         </div>
          )
     }

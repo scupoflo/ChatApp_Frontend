@@ -9,11 +9,12 @@ class Conversation extends React.Component {
 
   render(){
     return (
-      <div
-        onClick= {this.props.handleMessages}>
+      <button
+        onClick= { () => {this.props.click(this.props.id)}  }>
           {this.props.speakerOne.username} and {this.props.speakerTwo.username}
 
-      </div>
+      </button>
+
 
     )
   }
