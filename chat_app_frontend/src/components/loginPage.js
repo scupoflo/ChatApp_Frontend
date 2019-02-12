@@ -70,7 +70,7 @@ class LoginPage extends React.Component {
      fetch(API + `/conversations/${id}`)
      .then(res => res.json())
      .then(currentMessageData => {
-       debugger
+      
        this.setState({
          messages: currentMessageData.messages
        })

@@ -7,12 +7,13 @@ class Message extends React.Component {
 render() {
  return(
    <ul>
-     <li>
+     <ul className= "messages">
 
-     {this.props.speaker }
-     {this.props.text}
-        
-    </li>
+     <b>{this.props.speaker} </b> :   " {this.props.text} "
+     <br / >
+
+
+    </ul>
   </ul>
  )
 }
