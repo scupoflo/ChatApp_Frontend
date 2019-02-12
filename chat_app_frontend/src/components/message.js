@@ -17,6 +17,7 @@ const Message = (props) => {
                 <div className="modal-body">
                     <p>
                         {props.children}
+                        {props.allMessages}
                     </p>
                 </div>
                 <div className="modal-footer">

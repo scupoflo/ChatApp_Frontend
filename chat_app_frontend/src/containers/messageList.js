@@ -8,12 +8,12 @@ class MessageList extends Component {
     render() {
         return (
         <div className = "contacts_body">
-          {this.props.messageList.map((message, index) =>
+          {this.props.allMessages.map((message, index) =>
 
             <Message
             id = {message.id}
             key = {index}
-            speaker = {message.user_id.username}
+            speaker = {message.user_id}
             text = {message.text}
                  />)}
         </div>

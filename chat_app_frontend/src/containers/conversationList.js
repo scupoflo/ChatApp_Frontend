@@ -9,13 +9,13 @@ class ConversationList extends Component {
         return (
         <div className = "contacts_body">
           {this.props.conversationList.map((conversation, index) =>
-            <button>
+            <button  onClick= {this.props.click}>
               <Conversation
                 id = {conversation.id}
                 key = {index}
                 speakerOne = {conversation.user_id1}
                 speakerTwo = {conversation.user_id2}
-                onClick= {this.handleMessages}
+
              />
             </button>)}
          </div>

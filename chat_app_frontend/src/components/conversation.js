@@ -1,20 +1,16 @@
 import React from 'react'
 
 class Conversation extends React.Component {
+  state = {
+    clicked: false
+  }
 
-  handleMessages = () => {
-      fetch('http://localhost:3000/messages')
-      .then(res => res.json())
-      .then(currentMessageData => {
-        this.setState({
-          messages: currentMessageData
-        })
-      })
-    }
+
+
   render(){
     return (
       <div
-        onClick= {this.handleMessages}>
+        onClick= {this.props.handleMessages}>
           {this.props.speakerOne.username} and {this.props.speakerTwo.username}
 
       </div>

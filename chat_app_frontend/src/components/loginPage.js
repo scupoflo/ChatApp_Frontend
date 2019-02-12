@@ -11,7 +11,8 @@ class LoginPage extends React.Component {
     username: "",
     conversations: [],
     messages: [],
-    isShowing: false
+    isShowing: false,
+    currentUser: null
     }
   }
 
@@ -19,11 +20,6 @@ class LoginPage extends React.Component {
   this.setState ({
     currentUser: userObj
     })
-  }
-
-  componentDidMount(){
-    this.fetchConversation()
-    // this.fetchMessages()
   }
 
   openModalHandler = () => {
@@ -38,15 +34,15 @@ class LoginPage extends React.Component {
       })
     };
 
-    fetchConversation = () => {
-        fetch(API+ '/conversations')
-        .then(res => res.json())
-        .then(currentConversationData => {
-          this.setState({
-            conversations: currentConversationData
-          })
+  fetchConversation = (userObj) => {
+      fetch(API + `/users/${userObj.id}`)
+      .then(res => res.json())
+      .then(currentConversationData => {
+        this.setState({
+          conversations: currentConversationData.conversations
         })
-      }
+      })
+    }
 
       // fetchMessages = () => {
       //     fetch(API + '/messages')
@@ -75,7 +71,10 @@ class LoginPage extends React.Component {
       body: JSON.stringify({username: this.state.username})
     })
     .then(response => response.json())
-    .then(userObj => this.setCurrentUser(userObj))
+    .then(userObj => {
+      this.setCurrentUser(userObj)
+      this.fetchConversation(userObj)
+    })
   }
 
   handleMessages = () => {
@@ -102,13 +101,13 @@ class LoginPage extends React.Component {
 
         <ConversationList
           conversationList={this.state.conversations}
-          onClick= {this.handleMessages}
+          click= {this.handleMessages}
           debugger
           show={this.state.isShowing}
           close={this.closeModalHandler}
          />
 
-       <MessageList messageList= {this.state.messages}/>
+       <MessageList allMessages= {this.state.messages}/>
       </div>
     )
   }
